@@ -32,11 +32,12 @@ public class Server {
 		/* instantiated ServerSocket object and specified the port number
 		 * on which communication is going to occur
 		 */
-		ServerSocket welcomesock = new ServerSocket(51211);
+		ServerSocket welcomesock = new ServerSocket(51711);
 		 
 		//while(true){
 			/* server waits until client get connected to port
 			 */
+				System.out.println("Server waiting...");
 				socket = welcomesock.accept();
 				processRequest();
 				
@@ -75,6 +76,7 @@ public class Server {
 			}
 			*/
 			request = inStream.readLine();
+			System.out.println(request);
 			String[] reqLine = request.split(" ");
 			String token = reqLine[0];
 			String fileName = reqLine[1]; 
