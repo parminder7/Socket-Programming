@@ -1,9 +1,7 @@
 package SocketProgramming;
 
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -17,9 +15,12 @@ import java.net.Socket;
 public class Server {
 	BufferedReader inStream;
 	Socket socket;
+	private ServerSocket welcomesock;
+	private BufferedReader reader;
 		
 	public Server(){
-		
+		inStream = null;
+		socket = null;
 	}
 	
 	/**
@@ -29,10 +30,7 @@ public class Server {
 	 */
 	private void serverStartUp(){
 		try {
-		/* instantiated ServerSocket object and specified the port number
-		 * on which communication is going to occur
-		 */
-		ServerSocket welcomesock = new ServerSocket(51711);
+		welcomesock = new ServerSocket(51711);
 		 
 		//while(true){
 			/* server waits until client get connected to port
@@ -112,9 +110,10 @@ public class Server {
 		PrintWriter output = null;
 		try {
 			System.out.println("Request file name: "+fileName);
-			File myfile = new File("E://SONCHIRDI_STUDY_MATERIAL//MSS_TEXTBOOKS//Term2-Text books//516-Web Technologies//cics516//hw1//"+fileName);
+			//File myfile = new File("E://SONCHIRDI_STUDY_MATERIAL//MSS_TEXTBOOKS//Term2-Text books//516-Web Technologies//cics516//hw2//"+fileName);
+			File myfile = new File(fileName);
 			filereader = new FileReader(myfile);
-			BufferedReader reader = new BufferedReader(filereader);
+			reader = new BufferedReader(filereader);
 			
 			output = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())));
 
